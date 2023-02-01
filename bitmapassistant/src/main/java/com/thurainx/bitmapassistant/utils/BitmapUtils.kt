@@ -51,10 +51,10 @@ fun Uri.directConvertToBitmap(
         )
 }
 
-fun Bitmap.directConvertToFile(context: Context): File? {
-    val fileName: String = "nrc" + System.currentTimeMillis().toString()
+fun Bitmap.directConvertToCacheFile(context: Context, fileName: String = ""): File? {
+    val name: String = fileName.ifEmpty { "temp" + System.currentTimeMillis().toString() }
     val filesDir: File = context.cacheDir
-    val imageFile = File(filesDir, "$fileName.jpg")
+    val imageFile = File(filesDir, "$name.jpg")
     val os: OutputStream
     try {
         os = FileOutputStream(imageFile)
@@ -67,4 +67,23 @@ fun Bitmap.directConvertToFile(context: Context): File? {
         Timber.tag("BitmapAssistant").e(e.localizedMessage ?: "Convert to file failed.")
         return null
     }
+}
+
+fun Uri.directConvertToCacheFile(
+    context: Context,
+    fileName: String = "",
+    qualityScale: Double = 0.25,
+    onSuccess: (File) -> Unit,
+    onFailed: (String) -> Unit
+){
+    this.directConvertToBitmap(context, qualityScale, onSuccess = {
+          val cachedFile = it.directConvertToCacheFile(context, fileName)
+          if(cachedFile != null){
+              Timber.tag("BitmapAssistant").d("Generate file success")
+              onSuccess(cachedFile)
+          }else{
+              Timber.tag("BitmapAssistant").d("Cannot generate cache file.")
+              onFailed("Cannot generate cache file.")
+          }
+    }, onFailed)
 }

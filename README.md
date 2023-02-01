@@ -19,10 +19,10 @@ myUri.directConvertToBitmap(
 	  context = this,  
 	  qualityScale = 0.25,  
 	  onSuccess = { bitmap ->   
-			 // further operation  
+		// further operation  
   },  
 	  onFailed = { message ->   
-			 // error message   
+	        // error message   
  })
 ```
 Uri -> File
@@ -33,10 +33,10 @@ myUri.directConvertToCacheFile(
 	  fileName = "myFile",
 	  qualityScale = 0.25,  
 	  onSuccess = { bitmap ->   
-			 // further operation  
+		// further operation  
   },  
 	  onFailed = { message ->   
-			 // error message   
+		// error message   
  })
 ```
 Bitmap -> File

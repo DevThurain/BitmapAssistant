@@ -32,7 +32,7 @@ myUri.directConvertToCacheFile(
 	  context = this,  
 	  fileName = "myFile",
 	  qualityScale = 0.25,  
-	  onSuccess = { bitmap ->   
+	  onSuccess = { file ->   
 		// further operation  
   },  
 	  onFailed = { message ->   

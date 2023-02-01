@@ -51,7 +51,7 @@ Also, **__[follow](https://github.com/devthurain)__** me for my next creations! 
 
 # License
 ```xml
-Copyright 2019 skydoves (Jaewoong Eum)
+Copyright 2019 thurain (Thurain Bo Win)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
